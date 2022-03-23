@@ -1,1 +1,27 @@
-sample
+
+
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        
+        vector<vector<int>> pt;
+        
+        for(int i=0; i<numRows; i++){
+            
+            vector<int> level;
+            
+            for(int j=0; j<i+1; j++){
+                
+                if(j==0 || j==i){
+                    level.push_back(1);
+                }
+                else{
+                    int val = pt[i-1][j-1] + pt[i-1][j];
+                    level.push_back(val);
+                }
+            }
+            pt.push_back(level);
+        }
+        return pt;
+    }
+};
