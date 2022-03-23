@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int size = nums.size(), i, j;
+        
+        //look for the breakpoint
+        for(i=size-2; i>=0; i--){
+            if(nums[i] < nums[i+1]){
+                break;
+            } 
+        }
+        
+        //breakpoint not found
+        if(i<0){
+            //there is no breakpoint -> reverse
+            reverse(nums.begin(), nums.end());
+        }
+        
+        //found
+        else{
+            for(j=size-1; j>i; j--){
+                    
+                if(nums[i] < nums[j]){
+                    break;
+                }     
+            }
+            //swap
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            //sort the right (after breakpoint)
+            sort(nums.begin()+i+1, nums.end());
+        }
+        
+    }
+};
