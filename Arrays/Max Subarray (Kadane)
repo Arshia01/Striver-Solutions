@@ -1,0 +1,24 @@
+// Brute force : O(n^3) : 3 loops : (subarray i-j) : adding elements from i-j (loop3)
+// Better : O(n^2) : 2 loops : (subarray i-j) : adding elements from i-j (without loop -> sum+=arr[j)
+// Best : O(n) : Kadane : sum>=0 and maxi
+
+
+//keep calculating the sum, if sum <= 0 then discard that subarray, make sum=0, start looking for another subarray
+//maxi keeps track of maximum sum obtained from a subarray, if you find a subarray whos sum is greater than maxi, change maxi
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int sum=0, maxi = INT_MIN;
+        for(int i=0; i<nums.size(); i++){
+            sum+=nums[i];
+            if(maxi < sum){
+                maxi = sum;
+            }
+            if(sum < 0){
+                sum=0;
+            }
+        }
+        return maxi;
+    }
+};
