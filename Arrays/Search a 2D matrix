@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int r = matrix.size();
+        int c = matrix[0].size();
+        int s=0, e=c-1, m;
+        for(int i=0; i<r; i++){
+            if(target <= matrix[i][c-1]){
+                if(target < matrix[i][0]){
+                    return false;
+                }
+                while(s<=e){
+                    m = (s+e)/2;
+                    if(matrix[i][m] == target){
+                        return true;
+                    }
+                    else if(target < matrix[i][m]){
+                        e = m-1;
+                    }
+                    else{
+                        s = m+1;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
