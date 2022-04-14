@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        
+        int slow = nums[0];
+        int fast = nums[0];
+        
+        //create chain
+        do{
+            slow = nums[slow];       //move 1 step
+            fast = nums[nums[fast]]; //move 2 steps
+        }while(fast!=slow);
+        
+        fast = nums[0];
+        //both one at a time
+        while(fast!=slow){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        
+        return slow;
+        
+        
+    }
+};
