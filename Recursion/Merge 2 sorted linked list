@@ -1,0 +1,87 @@
+//RECURSIVE SOLUTION
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+        if(list1 == NULL ){
+            return list2;
+        }
+        if(list2 == NULL){
+            return list1;
+        }
+        
+        ListNode* a, *b, *h;
+        a = list1;
+        b = list2;
+        
+        if(a->val <= b->val){
+            a->next = mergeTwoLists(a->next, b);
+            h=a;
+        }else{
+            b->next = mergeTwoLists(a, b->next);
+            h= b;
+        }
+        
+        return h;
+    }
+};
+
+
+//ITERATIVE METHOD
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+        if(list1 == NULL && list2!=NULL){
+            return list2;
+        }
+        if(list2 == NULL && list1!=NULL){
+            return list1;
+        }
+        if(list1==NULL && list2==NULL){
+            return NULL;
+        }
+        
+        ListNode* a, *b, *h, *l;
+        a = list1;
+        b = list2;
+        
+        if(a->val <= b->val){
+            h = a;
+            a = a->next;
+        }else{
+            h = b;
+            b = b->next;
+        }
+        l = h;
+        
+        while(a!=NULL && b!=NULL){
+            if(a->val <= b->val){
+                l->next = a;
+                a = a->next;
+            }else{
+                l->next = b;
+                b = b->next;
+            }
+            l = l->next;
+        }
+        if(a==NULL){
+            
+            while(b!=NULL){
+                l->next = b;
+                l = l->next;
+                b = b->next;
+            }
+        }
+        else if (a!=NULL){
+            while(a!=NULL){
+                l->next = a;
+                l = l->next;
+                a = a->next;
+            }
+        }
+        return h;
+    }
+};
