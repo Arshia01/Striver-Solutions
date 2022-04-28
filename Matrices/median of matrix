@@ -1,0 +1,15 @@
+class Solution{   
+public:
+    int median(vector<vector<int>> &matrix, int r, int c){
+        // code here   
+        vector<int> v = matrix[0];
+        for(int i=1; i<r; i++){
+            for(int j=0; j<c; j++){
+                v.push_back(matrix[i][j]);
+            }
+        }
+        sort(v.begin(), v.end());
+        int x = (r*c)/2;
+        return v[x];
+    }
+};
