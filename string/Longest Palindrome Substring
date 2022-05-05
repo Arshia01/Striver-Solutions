@@ -1,0 +1,48 @@
+//using DP, creating table
+
+class Solution {
+public:
+    
+    string longestPalindrome(string s) {
+        
+        int n = s.length(), start, maxlen;
+        bool table[n][n];
+        
+        //initialise the table with 0
+        memset(table, 0, sizeof(table));
+        
+        maxlen = 1;
+        start = 0;
+        //diagonal elements i.e single char will always be a palindrome
+        for(int i=0; i<n; i++){
+            table[i][i] = 1;
+        }
+        
+        //for substr length 2, both chars must be same to be a palindrome
+        for(int i=0; i<n-1; ++i){
+            if(s[i] == s[i+1]){
+                maxlen = 2;
+                start = i;
+                table[i][i+1] = 1;
+            }
+        }
+        
+        //for substr length >=3  (k is the length of substr)
+        for(int k=3; k<=n; k++){
+            for(int i=0; i<n-k+1; i++){
+                int j = i+k-1;
+                if((s[i] == s[j]) && (table[i+1][j-1] == 1)){
+                    table[i][j] = 1;
+                    if (k > maxlen) {
+                        start = i;
+                        maxlen = k;
+                    }
+                }
+            }
+        }
+        
+        string str = s.substr(start, maxlen);
+        
+        return str;
+    }
+};
