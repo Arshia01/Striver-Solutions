@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    bool isPossible(long long a[], long long b[], long long n, long long k) {
+        // Your code goes here
+        long long x;
+        //sort a asc
+        sort(a, a+n);
+        
+        //sort b desc
+        sort(b, b+n, greater<int>());
+        
+        for(int i=0; i<n; i++){
+            x = a[i] + b[i];
+            if(x < k )
+                return false;
+        }
+        return true;
+    }
+};
