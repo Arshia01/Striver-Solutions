@@ -1,0 +1,31 @@
+//take 1 as reference therefore possible diagonals will be 1,2   1,3   1,4
+
+class Solution {
+public:
+    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
+        
+        //calculate all possible distances
+        int d12 = pow(p2[0] - p1[0], 2) + pow(p2[1] - p1[1], 2);
+        int d13 = pow(p3[0] - p1[0], 2) + pow(p3[1] - p1[1], 2);
+        int d23 = pow(p3[0] - p2[0], 2) + pow(p3[1] - p2[1], 2);
+        int d24 = pow(p4[0] - p2[0], 2) + pow(p4[1] - p2[1], 2);
+        int d34 = pow(p4[0] - p3[0], 2) + pow(p4[1] - p3[1], 2);
+        int d41 = pow(p1[0] - p4[0], 2) + pow(p1[1] - p4[1], 2);
+        
+        if(d12 == 0 || d13 == 0 || d23 == 0 || d34 == 0 || d41 == 0)
+            return false;
+        
+        if((d12 == d23 && d34 == d41 && d12 == d41) || (d13 == d23 && d24 == d41 && d41 ==  d13) || (d12 == d24 && d34 == d13 && d13 == d12)){
+            
+            if(d12 + d23 == d13)
+                return true;
+            else if(d13 + d23 == d12)
+                return true;
+            else if(d12 + d24 == d41)
+                return true;
+        }
+        
+        return false;
+        
+    }
+};
