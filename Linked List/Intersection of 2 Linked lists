@@ -1,0 +1,51 @@
+
+//difference b/w the lengths approach
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        if(headA==NULL ||headB==NULL)
+            return NULL;
+        
+        ListNode *i=headA, *j=headB;
+        int m=0, n=0, x;
+        //length of A
+        while(i!=NULL){
+            m++;
+            i=i->next;
+        }
+        
+        //length of B
+        while(j!=NULL){
+            n++;
+            j=j->next;
+        }
+        i=headA;
+        j=headB;
+        
+        if(m>n){
+            x=m-n;
+            while(x--){
+                i = i->next;
+            }
+        }
+        else if(n>m){
+            x=n-m;
+            while(x--){
+                j = j->next;
+            }
+        }
+        
+        while(i!=NULL && j!=NULL){
+            if(i == j)
+                return i;
+            i=i->next;
+            j=j->next;
+        }
+        
+        return NULL;
+    }
+};
+
+//another approach is to hash the address (traverse L1), while traversn=ing if you find the current node address already existing, return its value (intersection point)
