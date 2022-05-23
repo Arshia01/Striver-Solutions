@@ -1,0 +1,16 @@
+swap del->data with next node, delete del->next after swaping (by removing the links)
+
+void deleteNode(Node *del)
+    {
+       if(del->next->next==NULL)
+      {
+          del->data=del->next->data;
+          del->next=NULL;
+      }
+      
+      else 
+      {
+          del->data=del->next->data;
+          del->next=del->next->next;
+      }
+    }
