@@ -3,7 +3,8 @@
       s1 -> s2
       x  -> s1
       s2 -> s1
-  pop / peek : O(1) -> top of s1   
+  pop / peek : O(1) -> top of s1  
+  queue order in s1⭐
 */
 
 class MyQueue {
@@ -48,7 +49,7 @@ public:
 /*
    APPROACH 2 : amortized
    push in s1
-   s2: the queue in order
+   s2: the queue in order ⭐
    i.e pop / peek from s2
    
 */
