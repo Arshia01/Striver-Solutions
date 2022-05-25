@@ -1,0 +1,38 @@
+int evaluatePostfix(string S)
+    {
+        // Your code here
+        stack<int> s;
+        int x,y,ans;
+    
+    for(int i=0; i<S.length(); i++){
+        
+        if(S[i]=='*' || S[i]=='+' || S[i]=='-' || S[i]=='/' ){
+            
+            x = s.top();
+            s.pop();
+            y = s.top();
+            s.pop();
+            
+            if(S[i]=='*'){
+                ans = y*x;
+            }
+            else if(S[i]=='+'){
+                ans = y+x;
+            }
+            else if(S[i]=='-'){
+                ans = y-x;
+            }
+            else{
+                ans = y/x;
+            }
+            s.push(ans);
+            
+        }
+        
+        else{
+            s.push(S[i]-'0');
+        }
+        
+    }
+    return s.top();
+    }
