@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        int x = check(root);
+        return (x==-1 ? false : true);
+    }
+    
+    //function returns -1 (if not a balanced binary tree) and height of binary tree (if it is balanced)
+    int check(TreeNode* root){
+        if(root==NULL)
+            return 0;
+            
+        int leftHeight = check(root->left);
+        
+        //if for any left node -1 is retured, go back (no need to check further)
+        if(leftHeight==-1)
+            return -1;
+            
+        int rightHeight = check(root->right);
+        
+        //if for any right node -1 is retured, go back (no need to check further)
+        if(rightHeight==-1)
+            return -1;
+            
+        if(abs(leftHeight - rightHeight) > 1)
+            return -1;
+        return (max( leftHeight ,rightHeight ) + 1);
+    }
+};
