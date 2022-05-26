@@ -1,0 +1,25 @@
+//as you traverse down keep subtracting the node->val from targetSum , if targetSum == node->val and it is the LEAF node, then you've found the path.
+//break the problem -> use IBH 
+//break the tree into right subtree and left subtree and then approach
+
+class Solution {
+public:
+
+    bool hasPathSum(TreeNode* root, int targetSum) {
+
+        if(root==NULL)
+            return 0;
+        
+        else if(root->val == targetSum){
+            if(root->right==NULL && root->left==NULL)
+                return true; 
+        }
+        
+        bool l = hasPathSum(root->left, targetSum - root->val);
+    
+        bool r = hasPathSum(root->right, targetSum - root->val);
+        //if either of them returns true, then at least one path exists
+        return (l || r);
+
+    }
+};
